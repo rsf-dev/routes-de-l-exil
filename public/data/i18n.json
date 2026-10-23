@@ -1,0 +1,539 @@
+{
+  "fr": {
+    "app": {
+      "title": "Journalistes sur les routes de l'exil",
+      "documentTitle": "Journalistes sur les routes de l'exil",
+      "description": "Journalistes sur les routes de l'exil"
+    },
+    "aria": {
+      "map": "Carte des flux d'exil",
+      "filters": "Filtres et synthèse",
+      "filterGrid": "Filtres de la carte",
+      "year": "Année",
+      "country": "Tous pays",
+      "region": "Toutes régions",
+      "language": "Langue",
+      "focus": "Focus pays",
+      "showFilters": "Afficher les filtres",
+      "hideFilters": "Masquer les filtres",
+      "tutorial": "Afficher le tutoriel",
+      "closeModal": "Fermer la modale",
+      "closeCountry": "Fermer la page pays",
+      "previousView": "Vue précédente",
+      "nextView": "Vue suivante",
+      "relationsLegend": "Légende des relations",
+      "relationDisplay": "Affichage des relations",
+      "openMenu": "Ouvrir le menu",
+      "closeMenu": "Fermer le menu",
+      "modalActions": "Actions de la modale"
+    },
+    "filters": {
+      "country": "Tous pays",
+      "region": "Toutes régions",
+      "focusHosted": "Pays d'accueil",
+      "focusDeparted": "Pays d'exil",
+      "simplified": "Vue simplifiée",
+      "clear": "Supprimer les filtres",
+      "since": "Depuis {year}"
+    },
+    "regions": {
+      "Afrique": "Afrique Sub-saharienne",
+      "Amériques": "Amériques",
+      "Asie-Pacifique": "Asie-Pacifique",
+      "EEAC": "Europe de l'Est et Asie Centrale",
+      "MENA": "Maghreb et Moyen-Orient",
+      "UE Balkans": "UE Balkans"
+    },
+    "metrics": {
+      "flows": "{count} flux",
+      "cases": "{count} cas",
+      "linkedCases": "{count} cas liés"
+    },
+    "stats": {
+      "since": "Depuis {year}",
+      "in": "En {year}",
+      "exiled": "{yearLabel}, RSF a soutenu au moins {count} {subject} {scope}.",
+      "hosted": "{yearLabel}, au moins {count} {subject} {verb} {scope} et {supported} par RSF.",
+      "exiledSubjectSingular": "journaliste contraint à l'exil",
+      "exiledSubjectPlural": "journalistes contraints à l'exil",
+      "hostedSubjectSingular": "journaliste exilé",
+      "hostedSubjectPlural": "journalistes exilés",
+      "hostedVerbSingular": "a été accueilli",
+      "hostedVerbPlural": "ont été accueillis",
+      "supportedSingular": "soutenu",
+      "supportedPlural": "soutenus",
+      "scopes": {
+        "countryDeparted": "depuis ce pays",
+        "countryHosted": "dans ce pays",
+        "regionDeparted": "depuis cette région",
+        "regionHosted": "dans cette région",
+        "globalDeparted": ""
+      }
+    },
+    "legend": {
+      "map": "Légende",
+      "flow": "Flux d'exil",
+      "hostedCountry": "Pays d'accueil",
+      "exileCountry": "Pays d'exil",
+      "hosted": "Accueil",
+      "exile": "Exil"
+    },
+    "loading": {
+      "map": "Chargement de la carte...",
+      "mapError": "La carte n'a pas pu être chargée. Merci de réessayer plus tard.",
+      "flow": "Chargement de la fiche flux...",
+      "country": "Chargement de la fiche pays...",
+      "retry": "Réessayer"
+    },
+    "tutorial": {
+      "close": "Fermer",
+      "next": "Suivant",
+      "finish": "Terminer",
+      "steps": [
+        {
+          "title": "Filtrer la carte",
+          "text": "Choisissez une année, tous pays ou un pays précis, puis toutes régions ou une région pour ajuster le périmètre visible."
+        },
+        {
+          "title": "Comparer les rôles",
+          "text": "Utilisez Pays d'accueil ou Pays d'exil pour mettre en avant les pays selon leur rôle dominant dans les données affichées."
+        },
+        {
+          "title": "Alléger la lecture",
+          "text": "La vue simplifiée retire les drapeaux et les animations pour afficher des points uniformes et des flux en traits simples."
+        },
+        {
+          "title": "Explorer un pays",
+          "text": "Cliquez sur un pays pour filtrer uniquement ce pays ou ouvrir sa fiche de détails avec relations, évolutions et indicateurs."
+        },
+        {
+          "title": "Ouvrir une route",
+          "text": "Cliquez sur un flux pour ouvrir Routes de l'exil, comparer les routes visibles et suivre les cas année par année."
+        },
+        {
+          "title": "Ouvrir le menu",
+          "text": "Pour changer la langue, voir la carte en grand ou réafficher ce tutoriel, ouvrez le menu en haut à gauche."
+        },
+        {
+          "title": "Lire les couleurs",
+          "text": "La légende rappelle les flux d'exil et les couleurs utilisées pour distinguer pays d'accueil et pays d'exil."
+        },
+        {
+          "title": "Revenir à la vue globale",
+          "text": "Si un pays ou une région est sélectionné, utilisez Supprimer les filtres pour retrouver l'ensemble de la carte."
+        }
+      ]
+    },
+    "popup": {
+      "clear": "Supprimer le filtre",
+      "filter": "Filtrer uniquement ce pays",
+      "details": "Afficher la page de détails"
+    },
+    "buttons": {
+      "backMap": "Revenir à la carte",
+      "backCountry": "Revenir à {country}",
+      "backCountryFile": "Revenir à la fiche {country}",
+      "more": "Voir plus",
+      "close": "Fermer",
+      "tutorial": "Tutoriel",
+      "navigation": "Mode navigation",
+      "colorblind": "Mode daltonisme",
+      "darkTheme": "Thème sombre",
+      "hideFlows": "Supprimer les flux"
+    },
+    "flow": {
+      "kicker": "Routes de l'exil",
+      "description": "Cette fiche présente la route sélectionnée et permet de la comparer aux autres parcours observés sur la même période. Le graphique annuel montre l'évolution du nombre de journalistes concernés dans les données RSF.",
+      "routesTitle": "Routes d'exil",
+      "routesFilteredTitle": "Routes d'exil ({filter})",
+      "regionFilterLabel": "région : {region}",
+      "yearlyTitle": "Cas par année de la route : {origin} → {destination}",
+      "caseLabel": "Cas",
+      "yearSelect": "Année",
+      "originSelect": "Pays de départ",
+      "destinationSelect": "Pays d'arrivée",
+      "slides": {
+        "routes": "Routes d'exil",
+        "yearly": "Cas par année"
+      },
+      "title": "{prefix}{yearSelect}, {count} {subject} {originSelect} vers {destinationSelect}",
+      "subjectSingular": "journaliste a quitté",
+      "subjectPlural": "journalistes ont quitté"
+    },
+    "country": {
+      "description": "Cette fiche pays propose une lecture synthétique des parcours d'exil et d'accueil observés dans les données RSF. Elle met en regard les relations principales, les évolutions annuelles.",
+      "empty": "Aucune relation disponible pour cette période.",
+      "relationsTitle": "Relations du pays",
+      "diagram": "Schéma",
+      "list": "Liste",
+      "slides": {
+        "relations": "Relations",
+        "flows": "Accueil et exil",
+        "freedom": "Liberté de la presse"
+      },
+      "flowsTitle": "Accueil et exil",
+      "freedomTitle": "Classement mondial de la liberté de la presse",
+      "rank": "Rang",
+      "rankTooltip": "rang {country} : {rank}",
+      "other": "Autres"
+    }
+  },
+  "en": {
+    "app": {
+      "title": "Journalists on the roads of exile",
+      "documentTitle": "Journalists on the roads of exile",
+      "description": "Journalists on the roads of exile"
+    },
+    "aria": {
+      "map": "Map of exile flows",
+      "filters": "Filters and summary",
+      "filterGrid": "Map filters",
+      "year": "Year",
+      "country": "All countries",
+      "region": "All regions",
+      "language": "Language",
+      "focus": "Country focus",
+      "showFilters": "Show filters",
+      "hideFilters": "Hide filters",
+      "tutorial": "Show tutorial",
+      "closeModal": "Close modal",
+      "closeCountry": "Close country page",
+      "previousView": "Previous view",
+      "nextView": "Next view",
+      "relationsLegend": "Relations legend",
+      "relationDisplay": "Relations display",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "modalActions": "Modal actions"
+    },
+    "filters": {
+      "country": "All countries",
+      "region": "All regions",
+      "focusHosted": "Host countries",
+      "focusDeparted": "Exile countries",
+      "simplified": "Simplified view",
+      "clear": "Clear filters",
+      "since": "Since {year}"
+    },
+    "regions": {
+      "Afrique": "Sub-Saharan Africa",
+      "Amériques": "Americas",
+      "Asie-Pacifique": "Asia-Pacific",
+      "EEAC": "Eastern Europe and Central Asia",
+      "MENA": "North Africa and Middle East",
+      "UE Balkans": "EU Balkans"
+    },
+    "metrics": {
+      "flows": "{count} flows",
+      "cases": "{count} cases",
+      "linkedCases": "{count} linked cases"
+    },
+    "stats": {
+      "since": "Since {year}",
+      "in": "In {year}",
+      "exiled": "{yearLabel}, RSF supported at least {count} {subject} {scope}.",
+      "hosted": "{yearLabel}, at least {count} {subject} {verb} {scope} and {supported} by RSF.",
+      "exiledSubjectSingular": "journalist forced into exile",
+      "exiledSubjectPlural": "journalists forced into exile",
+      "hostedSubjectSingular": "exiled journalist",
+      "hostedSubjectPlural": "exiled journalists",
+      "hostedVerbSingular": "was hosted",
+      "hostedVerbPlural": "were hosted",
+      "supportedSingular": "supported",
+      "supportedPlural": "supported",
+      "scopes": {
+        "countryDeparted": "from this country",
+        "countryHosted": "in this country",
+        "regionDeparted": "from this region",
+        "regionHosted": "in this region",
+        "globalDeparted": ""
+      }
+    },
+    "legend": {
+      "map": "Legend",
+      "flow": "Exile flow",
+      "hostedCountry": "Host country",
+      "exileCountry": "Exile country",
+      "hosted": "Hosted",
+      "exile": "Exile"
+    },
+    "loading": {
+      "map": "Loading the map...",
+      "mapError": "The map could not be loaded. Please try again later.",
+      "flow": "Loading the route details...",
+      "country": "Loading the country profile...",
+      "retry": "Try again"
+    },
+    "tutorial": {
+      "close": "Close",
+      "next": "Next",
+      "finish": "Finish",
+      "steps": [
+        {
+          "title": "Filter the map",
+          "text": "Choose a year, all countries or a specific country, then all regions or one region to adjust the visible scope."
+        },
+        {
+          "title": "Compare roles",
+          "text": "Use Host countries or Exile countries to highlight countries according to their dominant role in the displayed data."
+        },
+        {
+          "title": "Simplify the view",
+          "text": "Simplified view removes flags and animations to show uniform points and flows as simple lines."
+        },
+        {
+          "title": "Explore a country",
+          "text": "Click on a country to filter on that country only or open its details page with relations, trends and indicators."
+        },
+        {
+          "title": "Open a route",
+          "text": "Click on a flow to open Exile routes, compare visible routes and follow cases year by year."
+        },
+        {
+          "title": "Open the menu",
+          "text": "To change language, adjust the zoomor replay this tutorial, open the menu in the top-left corner."
+        },
+        {
+          "title": "Read the colours",
+          "text": "The legend summarises exile flows and the colours used to distinguish host countries from exile countries."
+        },
+        {
+          "title": "Return to the full map",
+          "text": "If a country or region is selected, use “Clear filters” to restore the full map."
+        }
+      ]
+    },
+    "popup": {
+      "clear": "Clear filter",
+      "filter": "Filter this country only",
+      "details": "Open country details"
+    },
+    "buttons": {
+      "backMap": "Back to the map",
+      "backCountry": "Back to {country}",
+      "backCountryFile": "Back to {country} profile",
+      "more": "See more",
+      "close": "Close",
+      "tutorial": "Tutorial",
+      "navigation": "Navigation mode",
+      "colorblind": "Colorblind mode",
+      "darkTheme": "Dark theme",
+      "hideFlows": "Hide flows"
+    },
+    "flow": {
+      "kicker": "Exile routes",
+      "description": "This panel presents the selected route and compares it with the other journeys observed over the same period. The yearly chart shows how many journalists are represented in RSF's data.",
+      "routesTitle": "Exile routes",
+      "routesFilteredTitle": "Exile routes ({filter})",
+      "regionFilterLabel": "region: {region}",
+      "yearlyTitle": "Cases by year for the route: {origin} → {destination}",
+      "caseLabel": "Cases",
+      "yearSelect": "Year",
+      "originSelect": "Departure country",
+      "destinationSelect": "Arrival country",
+      "slides": {
+        "routes": "Exile routes",
+        "yearly": "Cases by year"
+      },
+      "title": "{prefix}{yearSelect}, {count} {subject} left {originSelect} for {destinationSelect}",
+      "subjectSingular": "journalist",
+      "subjectPlural": "journalists"
+    },
+    "country": {
+      "description": "This country profile offers a synthetic view of exile and hosting journeys observed in RSF's data. It connects the main relations and yearly trends.",
+      "empty": "No relation is available for this period.",
+      "relationsTitle": "Country relations",
+      "diagram": "Diagram",
+      "list": "List",
+      "slides": {
+        "relations": "Relations",
+        "flows": "Hosting and exile",
+        "freedom": "Press freedom"
+      },
+      "flowsTitle": "Hosting and exile",
+      "freedomTitle": "World Press Freedom Index ranking",
+      "rank": "Rank",
+      "rankTooltip": "rank {country}: {rank}",
+      "other": "Other"
+    }
+  },
+  "es": {
+    "app": {
+      "title": "Periodistas en las rutas del exilio",
+      "documentTitle": "Periodistas en las rutas del exilio",
+      "description": "Periodistas en las rutas del exilio"
+    },
+    "aria": {
+      "map": "Mapa de los flujos de exilio",
+      "filters": "Filtros y síntesis",
+      "filterGrid": "Filtros del mapa",
+      "year": "Año",
+      "country": "Todos los países",
+      "region": "Todas las regiones",
+      "language": "Idioma",
+      "focus": "Enfoque país",
+      "showFilters": "Mostrar filtros",
+      "hideFilters": "Ocultar filtros",
+      "tutorial": "Mostrar tutorial",
+      "closeModal": "Cerrar modal",
+      "closeCountry": "Cerrar ficha país",
+      "previousView": "Vista anterior",
+      "nextView": "Vista siguiente",
+      "relationsLegend": "Leyenda de relaciones",
+      "relationDisplay": "Visualización de relaciones",
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú",
+      "modalActions": "Acciones del modal"
+    },
+    "filters": {
+      "country": "Todos los países",
+      "region": "Todas las regiones",
+      "focusHosted": "Países de acogida",
+      "focusDeparted": "Países de exilio",
+      "simplified": "Vista simplificada",
+      "clear": "Borrar filtros",
+      "since": "Desde {year}"
+    },
+    "regions": {
+      "Afrique": "África subsahariana",
+      "Amériques": "Américas",
+      "Asie-Pacifique": "Asia-Pacífico",
+      "EEAC": "Europa del Este y Asia Central",
+      "MENA": "Magreb y Oriente Medio",
+      "UE Balkans": "UE Balcanes"
+    },
+    "metrics": {
+      "flows": "{count} flujos",
+      "cases": "{count} casos",
+      "linkedCases": "{count} casos vinculados"
+    },
+    "stats": {
+      "since": "Desde {year}",
+      "in": "En {year}",
+      "exiled": "{yearLabel}, RSF apoyó al menos a {count} {subject} {scope}.",
+      "hosted": "{yearLabel}, al menos {count} {subject} {verb} {scope} y {supported} por RSF.",
+      "exiledSubjectSingular": "periodista obligado al exilio",
+      "exiledSubjectPlural": "periodistas obligados al exilio",
+      "hostedSubjectSingular": "periodista exiliado",
+      "hostedSubjectPlural": "periodistas exiliados",
+      "hostedVerbSingular": "fue acogido",
+      "hostedVerbPlural": "fueron acogidos",
+      "supportedSingular": "apoyado",
+      "supportedPlural": "apoyados",
+      "scopes": {
+        "countryDeparted": "desde este país",
+        "countryHosted": "en este país",
+        "regionDeparted": "desde esta región",
+        "regionHosted": "en esta región",
+        "globalDeparted": ""
+      }
+    },
+    "legend": {
+      "map": "Leyenda",
+      "flow": "Flujo de exilio",
+      "hostedCountry": "País de acogida",
+      "exileCountry": "País de exilio",
+      "hosted": "Acogida",
+      "exile": "Exilio"
+    },
+    "loading": {
+      "map": "Cargando el mapa...",
+      "mapError": "No se pudo cargar el mapa. Inténtalo de nuevo más tarde.",
+      "flow": "Cargando la ficha de ruta...",
+      "country": "Cargando la ficha país...",
+      "retry": "Reintentar"
+    },
+    "tutorial": {
+      "close": "Cerrar",
+      "next": "Siguiente",
+      "finish": "Terminar",
+      "steps": [
+        {
+          "title": "Filtrar el mapa",
+          "text": "Elige un año, todos los países o un país concreto, y luego todas las regiones o una región para ajustar el perímetro visible."
+        },
+        {
+          "title": "Comparar los roles",
+          "text": "Usa Países de acogida o Países de exilio para destacar los países según su rol dominante en los datos mostrados."
+        },
+        {
+          "title": "Simplificar la vista",
+          "text": "La vista simplificada retira las banderas y las animaciones para mostrar puntos uniformes y flujos como líneas simples."
+        },
+        {
+          "title": "Explorar un país",
+          "text": "Haz clic en un país para filtrar solo ese país o abrir su ficha de detalle con relaciones, evoluciones e indicadores."
+        },
+        {
+          "title": "Abrir una ruta",
+          "text": "Haz clic en un flujo para abrir Rutas del exilio, comparar las rutas visibles y seguir los casos año a año."
+        },
+        {
+          "title": "Abrir el menú",
+          "text": "Para cambiar el idioma, ver el mapa en grande o volver a mostrar este tutorial, abre el menú de la esquina superior izquierda."
+        },
+        {
+          "title": "Leer los colores",
+          "text": "La leyenda resume los flujos de exilio y los colores utilizados para distinguir países de acogida y países de exilio."
+        },
+        {
+          "title": "Volver a la vista global",
+          "text": "Si hay un país o una región seleccionados, usa Borrar filtros para recuperar el conjunto del mapa."
+        }
+      ]
+    },
+    "popup": {
+      "clear": "Borrar filtro",
+      "filter": "Filtrar solo este país",
+      "details": "Mostrar ficha de detalle"
+    },
+    "buttons": {
+      "backMap": "Volver al mapa",
+      "backCountry": "Volver a {country}",
+      "backCountryFile": "Volver a la ficha {country}",
+      "more": "Ver más",
+      "close": "Cerrar",
+      "tutorial": "Tutorial",
+      "navigation": "Modo navegación",
+      "colorblind": "Modo daltonismo",
+      "darkTheme": "Tema oscuro",
+      "hideFlows": "Ocultar flujos"
+    },
+    "flow": {
+      "kicker": "Rutas del exilio",
+      "description": "Esta ficha presenta la ruta seleccionada y permite compararla con otros recorridos observados en el mismo periodo. El gráfico anual muestra la evolución del número de periodistas registrados en los datos de RSF.",
+      "routesTitle": "Rutas del exilio",
+      "routesFilteredTitle": "Rutas del exilio ({filter})",
+      "regionFilterLabel": "región: {region}",
+      "yearlyTitle": "Casos por año de la ruta: {origin} → {destination}",
+      "caseLabel": "Casos",
+      "yearSelect": "Año",
+      "originSelect": "País de salida",
+      "destinationSelect": "País de llegada",
+      "slides": {
+        "routes": "Rutas del exilio",
+        "yearly": "Casos por año"
+      },
+      "title": "{prefix}{yearSelect}, {count} {subject} {originSelect} hacia {destinationSelect}",
+      "subjectSingular": "periodista salió de",
+      "subjectPlural": "periodistas salieron de"
+    },
+    "country": {
+      "description": "Esta ficha país ofrece una lectura sintética de los recorridos de exilio y acogida observados en los datos de RSF. Relaciona las principales conexiones y las evoluciones anuales.",
+      "empty": "No hay ninguna relación disponible para este periodo.",
+      "relationsTitle": "Relaciones del país",
+      "diagram": "Esquema",
+      "list": "Lista",
+      "slides": {
+        "relations": "Relaciones",
+        "flows": "Acogida y exilio",
+        "freedom": "Libertad de prensa"
+      },
+      "flowsTitle": "Acogida y exilio",
+      "freedomTitle": "Clasificación mundial de la libertad de prensa",
+      "rank": "Puesto",
+      "rankTooltip": "puesto {country}: {rank}",
+      "other": "Otros"
+    }
+  }
+}

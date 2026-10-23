@@ -1,0 +1,134 @@
+/* Adaptation des palettes communes aux flux et fiches pays d'Exil. */
+#rsf-map-app {
+  --ink: var(--rsf-text);
+  --muted: var(--rsf-muted);
+  --panel: var(--rsf-surface);
+  --line: var(--rsf-border);
+}
+
+#rsf-map-app :is(.stats-panel, .legend, .utility-menu-panel, .loading-card, .tutorial-card,
+  .flow-modal, .country-modal, .rsf-cartography-card, .country-action-popup) {
+  --ink: var(--rsf-text);
+  --muted: var(--rsf-muted);
+  --panel: var(--rsf-surface);
+  --line: var(--rsf-border);
+  background: var(--rsf-surface);
+  color: var(--rsf-text);
+  border-color: var(--rsf-border);
+  backdrop-filter: none;
+  opacity: 1;
+}
+
+#rsf-map-app :is(.stats-panel, .legend, .utility-menu-panel, .loading-card, .tutorial-card,
+  .flow-modal, .country-modal) :is(h1, h2, h3, p, label, .stats-title, .stats-detail,
+  .flow-country, .network-list-country, .stats-credit) { color: var(--rsf-text); }
+
+#rsf-map-app :is(.stats-panel, .utility-menu-panel, .tutorial-card, .flow-modal, .country-modal,
+  .country-action-popup, .loading-card) :is(button, select, .export-button, .focus-toggle,
+  .language-toggle, .network-view-toggle) {
+  background-color: var(--rsf-control);
+  border-color: var(--rsf-border);
+  color: var(--rsf-text);
+  color-scheme: inherit;
+  box-shadow: none;
+}
+
+#rsf-map-app :is(.stats-panel, .utility-menu-panel, .tutorial-card, .flow-modal, .country-modal,
+  .country-action-popup) button:is(:hover, :focus-visible) {
+  background-color: var(--rsf-hover);
+  color: var(--rsf-text);
+}
+
+#rsf-map-app :is(.stats-panel, .utility-menu-panel, .flow-modal, .country-modal) button:is(.active, [aria-pressed="true"]),
+#rsf-map-app .flow-relation-row.selected {
+  background-color: var(--rsf-active-bg);
+  color: var(--rsf-active-text);
+  border-color: var(--rsf-accent);
+}
+#rsf-map-app .flow-relation-row.selected .flow-country { color: var(--rsf-active-text); }
+#rsf-map-app .country-action-popup .leaflet-popup-content-wrapper { background: var(--rsf-surface); color: var(--rsf-text); }
+#rsf-map-app .country-action-popup .leaflet-popup-close-button { color: var(--rsf-text); }
+#rsf-map-app.theme-dark .stats-logo { filter: brightness(0) invert(1); }
+
+/* Garder le burger lisible, même quand le mode navigation est actif. */
+#rsf-map-app #utilityMenuToggle {
+  background: var(--rsf-control);
+  border-color: var(--rsf-border);
+  color: var(--rsf-text);
+  opacity: 1;
+  box-shadow: none;
+}
+#rsf-map-app #utilityMenu:is(.open, :hover, :focus-within) #utilityMenuToggle {
+  background: var(--rsf-accent);
+  border-color: var(--rsf-accent);
+  color: #fff;
+}
+#rsf-map-app #utilityMenuPanel[hidden],
+#rsf-map-app #utilityMenu:not(.open) #utilityMenuPanel { display: none !important; }
+#rsf-map-app #utilityMenu.open #utilityMenuPanel:not([hidden]) {
+  max-height: calc(100dvh - 145px);
+  overflow-y: auto;
+  background: var(--rsf-surface);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+#rsf-map-app #utilityMenuPanel :is(.utility-menu-item, #rsf-cartography-toggle) {
+  background: var(--rsf-control);
+  color: var(--rsf-text);
+  border-color: var(--rsf-border);
+}
+#rsf-map-app #utilityMenuPanel :is(.utility-menu-item, #rsf-cartography-toggle).active {
+  background: var(--rsf-active-bg);
+  color: var(--rsf-active-text);
+  border-color: var(--rsf-accent);
+}
+
+#rsf-map-app .loading-overlay { background: var(--rsf-surface); }
+#rsf-map-app .loading-overlay[hidden] { display: none; }
+#rsf-map-app .loading-card { flex-wrap: wrap; max-width: min(430px, calc(100vw - 32px)); }
+#rsf-map-app .loading-progress {
+  flex: 0 0 100%;
+  height: 5px;
+  background: var(--rsf-track);
+  border-radius: 4px;
+  overflow: hidden;
+}
+#rsf-map-app .loading-progress[hidden] { display: none; }
+#rsf-map-app .loading-progress-fill { display: block; height: 100%; width: 5%; background: var(--rsf-accent); transition: width 160ms ease; }
+#rsf-map-app .loading-overlay.is-error .loading-spinner { display: none; }
+
+#rsf-map-app.theme-dark .country-marker {
+  border-color: #fff;
+  outline: 1px solid #fff;
+}
+#rsf-map-app.theme-dark :is(.network-center-disc, .network-center-halo) { fill: var(--rsf-text); }
+#rsf-map-app .network-country-name { fill: var(--rsf-text); }
+#rsf-map-app .network-other-label { fill: #16161b; }
+#rsf-map-app .network-guide { stroke: var(--rsf-border); }
+#rsf-map-app .network-legend-swatch.exile { background: var(--origin); }
+#rsf-map-app .network-legend-swatch.hosted { background: var(--hosted); }
+#rsf-map-app.theme-dark .flow-base { opacity: 0.82; filter: drop-shadow(0 0 3px rgba(110, 200, 255, 0.35)); }
+#rsf-map-app.theme-dark .flow-stream { opacity: 1; filter: drop-shadow(0 0 3px rgba(110, 200, 255, 0.5)); }
+
+/* Les drapeaux et couleurs de rôle restent intacts dans les deux thèmes. */
+#rsf-map-app :is(.country-marker img, .country-title-flag) { filter: none; }
+#rsf-map-app :is(.stats-flag, .country-title-flag) {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #fff;
+  color: #16161b;
+}
+#rsf-map-app .country-title-flag { width: 32px; height: 32px; vertical-align: middle; }
+#rsf-map-app :is(.stats-flag, .country-title-flag) > span { grid-area: 1 / 1; }
+#rsf-map-app :is(.stats-flag, .country-title-flag) img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#rsf-map-app :is(.stats-flag, .country-title-flag) img[hidden] { display: none; }

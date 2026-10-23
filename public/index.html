@@ -1,27 +1,263 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RSF Data</title>
-    <link rel="stylesheet" href="./styles.css" />
-    <!-- Ajuste la hauteur de l'iframe sur rsf.org (paragraphe « Dataviz »). À conserver. -->
-    <script async src="https://cdn.jsdelivr.net/npm/@iframe-resizer/child@5.5.7"></script>
-  </head>
-  <body>
-    <header>
-      <h1>RSF Data</h1>
-      <p class="subtitle">Jeu de données publié via GitHub Pages</p>
-    </header>
-    <main>
-      <p>
-        Remplacez le contenu du dossier <code>public/</code> par votre site
-        statique. Chaque commit sur <code>main</code> redéploie automatiquement
-        cette page sur GitHub Pages.
-      </p>
-    </main>
-    <footer>
-      <p>© Reporters sans frontières</p>
-    </footer>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Journalistes sur les routes de l'exil" />
+  <!-- Release version: replace every occurrence of 2026-10-22-icons-exil-1 in this file on publication. -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg?v=2026-10-22-icons-exil-1" />
+  <title>Journalistes sur les routes de l'exil</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=2026-10-22-icons-exil-1" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.9.0/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="css/themes.css?v=2026-10-22-icons-exil-1" />
+  <link rel="stylesheet" href="css/exil-themes.css?v=2026-10-22-icons-exil-1" />
+</head>
+
+<body id="rsf-map-app">
+  <main id="app">
+    <div id="map" aria-label="Carte des flux d'exil"></div>
+
+    <section class="stats-panel" aria-label="Filtres et synthèse">
+      <div id="statsHeadingToggle" class="stats-heading" role="button" tabindex="0" aria-label="Masquer les filtres"
+        aria-expanded="true">
+        <img class="stats-logo" src="assets/logo.svg?v=2026-10-22-icons-exil-1" alt="RSF" />
+        <h1 id="statsTitle" class="stats-title">Journalistes sur les routes de l'exil</h1>
+      </div>
+      <div class="stats-copy">
+        <div class="stats-detail-row">
+          <span id="statsFlag" class="stats-flag" hidden></span>
+          <div>
+            <p id="statsExiled" class="stats-detail"></p>
+            <p id="statsHosted" class="stats-detail" hidden></p>
+          </div>
+        </div>
+        <div id="filterContent" class="filter-content">
+          <div class="filter-grid title-filter-grid" aria-label="Filtres de la carte">
+            <select id="yearSelect" aria-label="Année"></select>
+            <select id="countrySelect" aria-label="Pays"></select>
+            <select id="regionSelect" aria-label="Région">
+              <option value="">Toutes régions</option>
+            </select>
+            <div class="focus-toggle" role="group" aria-label="Focus pays">
+              <button type="button" data-focus-role="hosted" aria-pressed="false">Pays d'accueil</button>
+              <button type="button" data-focus-role="departed" aria-pressed="false">Pays d'exil</button>
+              <button type="button" data-simplified-view aria-pressed="false">Vue simplifiée</button>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span id="flowCount">0 flux</span>
+            <span id="caseCount">0 cas</span>
+          </div>
+          <button id="clearFiltersButton" class="clear-filters-button" type="button" hidden>Supprimer les
+            filtres</button>
+          <p class="stats-credit">Crédits : Vianney Loriquet / Reporters sans Frontières</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="legend" aria-label="Legende">
+      <div class="legend-item"><span class="line-sample"></span><span id="legendFlow">Flux d'exil</span></div>
+      <div class="legend-item"><span class="country-aura-sample hosted"></span><span id="legendHosted">Pays d'accueil</span></div>
+      <div class="legend-item"><span class="country-aura-sample exile"></span><span id="legendExile">Pays d'exil</span></div>
+    </section>
+
+    <div class="utility-menu" id="utilityMenu">
+      <button id="utilityMenuToggle" class="utility-menu-toggle" type="button" aria-label="Ouvrir le menu"
+        aria-expanded="false" aria-controls="utilityMenuPanel"><span aria-hidden="true"><i></i></span></button>
+      <div id="utilityMenuPanel" class="utility-menu-panel" hidden>
+        <div class="utility-menu-field">
+          <span>Langue</span>
+          <div class="language-toggle" id="languageToggle" role="group" aria-label="Langue">
+            <button type="button" data-language="fr" aria-pressed="true">FR</button>
+            <button type="button" data-language="en" aria-pressed="false">EN</button>
+            <button type="button" data-language="es" aria-pressed="false">ES</button>
+          </div>
+        </div>
+        <button id="tutorialReplay" class="utility-menu-item" type="button">Tutoriel</button>
+        <button id="navigationModeButton" class="utility-menu-item" type="button" aria-pressed="false">Mode navigation</button>
+        <button id="colorblindModeButton" class="utility-menu-item" type="button" aria-pressed="false">Mode daltonisme</button>
+        <button id="darkThemeButton" class="utility-menu-item" type="button" aria-pressed="false">Thème sombre</button>
+        <button id="hideFlowsButton" class="utility-menu-item" type="button" aria-pressed="false">Supprimer les flux</button>
+        <button id="rsf-cartography-toggle" class="utility-menu-item" type="button">RSF cartographie</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="loadingOverlay" class="loading-overlay active" role="status" aria-live="polite">
+    <div class="loading-card">
+      <span class="loading-spinner" aria-hidden="true"></span>
+      <p id="loadingText">Chargement de la carte...</p>
+      <div id="loadingProgress" class="loading-progress" role="progressbar" aria-label="Chargement" aria-valuemin="0" aria-valuemax="100" aria-valuenow="5"><span class="loading-progress-fill"></span></div>
+      <button id="loadingRetry" type="button" hidden>Réessayer</button>
+    </div>
+  </div>
+
+  <div id="tutorialOverlay" class="tutorial-overlay" hidden>
+    <div id="tutorialFocus" class="tutorial-focus" aria-hidden="true"></div>
+    <section class="tutorial-card" aria-labelledby="tutorialTitle">
+      <p id="tutorialStep" class="tutorial-step"></p>
+      <h2 id="tutorialTitle"></h2>
+      <p id="tutorialText"></p>
+      <div class="tutorial-actions">
+        <button id="tutorialSkip" class="tutorial-secondary" type="button">Fermer</button>
+        <button id="tutorialNext" class="tutorial-primary" type="button">Suivant</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="rsf-cartography-modal" class="rsf-cartography-modal hidden" role="dialog" aria-modal="true"
+    aria-hidden="true" aria-labelledby="rsf-cartography-title" hidden>
+    <div class="rsf-cartography-backdrop" data-close-rsf-cartography></div>
+    <section class="rsf-cartography-card" role="document">
+      <header class="rsf-cartography-header">
+        <h2 id="rsf-cartography-title">RSF cartographie</h2>
+        <button id="rsf-cartography-close" class="rsf-cartography-close" type="button" aria-label="Fermer"
+          data-close-rsf-cartography>×</button>
+      </header>
+      <div class="rsf-cartography-grid">
+        <a class="rsf-cartography-link"
+          href="https://rsf-carte-journalistes-tues-disparus-otages-detenus-2025.rsf.org/" target="_blank"
+          rel="noopener noreferrer">
+          <img src="assets/carte_bilan.png" alt="" loading="lazy">
+          <span>Violences contre les journalistes dans le monde (édition 2025)</span>
+        </a>
+        <a class="rsf-cartography-link" href="https://ukraine-mobilisation.rsf.org/" target="_blank"
+          rel="noopener noreferrer">
+          <img src="assets/carte_ukraine.png" alt="" loading="lazy">
+          <span>Surveillance des violences contre les journalistes en Ukraine</span>
+        </a>
+        <a class="rsf-cartography-link" href="https://grands-lacs.rsf.org/" target="_blank"
+          rel="noopener noreferrer">
+          <img src="assets/grands-lacs.png" alt="" loading="lazy">
+          <span>Surveillance des violences contre les journalistes dans la région des Grands Lacs africains</span>
+        </a>
+        <a class="rsf-cartography-link" href="https://routes-de-l-exil.data.rsf.org/" target="_blank"
+          rel="noopener noreferrer">
+          <img src="assets/carte_exil.png" alt="" loading="lazy">
+          <span>Les journalistes sur les routes de l'exil (édition 2021 à 2025)</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <dialog id="flowModal" class="flow-modal">
+    <div class="modal-head">
+      <div>
+        <p id="modalKicker"></p>
+        <h1 id="modalTitle"></h1>
+      </div>
+      <div id="flowActionMenu" class="modal-head-actions modal-action-menu">
+        <div id="flowActionPanel" class="modal-action-panel">
+          <button id="backFlowModal" class="modal-back-button" type="button">Revenir à la carte</button>
+          <button id="closeModal" class="modal-back-button" type="button">Fermer</button>
+        </div>
+        <button id="flowActionsToggle" class="modal-action-toggle" type="button" aria-controls="flowActionPanel"
+          aria-expanded="false" aria-label="Actions"><span aria-hidden="true"><i></i></span></button>
+      </div>
+    </div>
+
+    <div class="flow-modal-body">
+      <p id="modalText" class="modal-text"></p>
+
+      <div class="flow-carousel-controls">
+        <button id="flowPrev" class="carousel-button" type="button" aria-label="Vue précédente">‹</button>
+        <span id="flowSlideLabel"></span>
+        <button id="flowNext" class="carousel-button" type="button" aria-label="Vue suivante">›</button>
+      </div>
+
+      <div id="flowCarousel" class="flow-carousel">
+        <section class="flow-slide active" data-label="Routes">
+          <h2 id="flowRelationsHeading">Routes d'exil</h2>
+          <div id="flowRelationsChart" class="flow-relations-chart"></div>
+        </section>
+        <section class="flow-slide" data-label="Années">
+          <h2 id="yearlyChartTitle">Cas par année de la route</h2>
+          <div class="chart-frame chart-scroll">
+            <div id="yearlyChartTrack" class="yearly-chart-track">
+              <canvas id="yearlyChart"></canvas>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="countryModal" class="country-modal">
+    <div class="modal-head country-modal-head">
+      <div>
+        <p id="countryModalKicker" hidden></p>
+        <h1 id="countryModalTitle"></h1>
+      </div>
+      <div id="countryActionMenu" class="country-modal-actions modal-action-menu">
+        <div id="countryActionPanel" class="modal-action-panel">
+          <button id="backCountryModal" class="modal-back-button" type="button">Revenir à la carte</button>
+          <a id="countryMoreLink" class="export-button" href="#" target="_blank" rel="noopener noreferrer" hidden>Voir
+            plus</a>
+          <button id="closeCountryModal" class="modal-back-button" type="button">Fermer</button>
+        </div>
+        <button id="countryActionsToggle" class="modal-action-toggle" type="button" aria-controls="countryActionPanel"
+          aria-expanded="false" aria-label="Actions"><span aria-hidden="true"><i></i></span></button>
+      </div>
+    </div>
+
+    <div class="country-modal-body">
+      <p id="countryModalText" class="modal-text country-detail-text"></p>
+
+      <div class="country-carousel-controls">
+        <button id="countryPrev" class="carousel-button" type="button" aria-label="Vue précédente">‹</button>
+        <span id="countrySlideLabel"></span>
+        <button id="countryNext" class="carousel-button" type="button" aria-label="Vue suivante">›</button>
+      </div>
+
+      <div id="countryCarousel" class="country-carousel">
+        <section class="country-slide active" data-label="Relations">
+          <div class="country-slide-head">
+            <div>
+              <h2 id="countryRelationsHeading">Relations du pays</h2>
+              <div class="network-legend" aria-label="L&eacute;gende des relations">
+                <span class="legend-item"><i class="network-legend-swatch exile"></i><span id="networkLegendExile">Exil</span></span>
+                <span class="legend-item"><i class="network-legend-swatch hosted"></i><span id="networkLegendHosted">Accueil</span></span>
+              </div>
+            </div>
+            <div class="network-toolbar">
+              <div class="network-view-toggle" role="group" aria-label="Affichage des relations">
+                <button class="active" type="button" data-network-view="diagram">Sch&eacute;ma</button>
+                <button type="button" data-network-view="list">Liste</button>
+              </div>
+              <select id="countryRelationYear"></select>
+            </div>
+          </div>
+          <div id="countryNetwork" class="country-network"></div>
+        </section>
+
+        <section class="country-slide" data-label="Accueil et exil">
+          <h2 id="countryFlowHeading">Accueil et exil</h2>
+          <div class="chart-frame">
+            <canvas id="countryFlowChart"></canvas>
+          </div>
+        </section>
+
+        <section class="country-slide" data-label="Liberté de la presse">
+          <h2 id="pressFreedomHeading">Classement mondial de la liberté de la presse</h2>
+          <div class="chart-frame">
+            <canvas id="pressFreedomChart"></canvas>
+          </div>
+        </section>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/maplibre-gl@5.9.0/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/app.js?v=2026-10-22-icons-exil-1"></script>
+</body>
+
 </html>
